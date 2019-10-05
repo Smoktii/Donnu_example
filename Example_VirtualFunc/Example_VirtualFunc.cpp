@@ -1,14 +1,65 @@
-﻿// Example_VirtualFunc.cpp : Этот файл содержит функцию "main". Здесь начинается и заканчивается выполнение программы.
+﻿// ConsoleApplication1.cpp : Этот файл содержит функцию "main". Здесь начинается и заканчивается выполнение программы.
 //
 
 #include "pch.h"
 #include <iostream>
 
+using namespace std;
+
+class A1
+{
+public:
+	virtual int f(A1& a) {
+		cout << "\n F in A1. Type = "<< typeid(a).name()<<"\n";
+		return 1;
+	}
+};
+
+class A2 : public A1
+{
+public:
+	virtual int f(A1& a) {
+		cout << "\n F in A2. Type = " << typeid(a).name() << "\n";
+		return 2;
+	}
+};
+
+class A3 : public A2
+{
+public:
+	int i;
+};
+
+class A4 : public A3
+{
+public:
+	int f(A1& d) {
+		cout << "\n F in A4. Type = " << typeid(d).name() << "\n";
+		return 4;
+	}
+};
+
+int MyF(A1& var1)
+{
+	cout << var1.f(var1);
+	return 1;
+};
+
+
 int main()
 {
-    std::cout << "Hello World!\n"; 
-}
+	std::cout << "TEST!\n";
+	A1 a;
+	A2 b;
+	A3 c;
+	A4 d;
+	MyF(a);
+	MyF(b);
+	MyF(d);
+	cout << "\n Output diff type \n";
+	cout << d.f(c);
 
+}
 // Запуск программы: CTRL+F5 или меню "Отладка" > "Запуск без отладки"
 // Отладка программы: F5 или меню "Отладка" > "Запустить отладку"
 
