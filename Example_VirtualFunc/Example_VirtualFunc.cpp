@@ -18,7 +18,7 @@ public:
 class A2 : public A1
 {
 public:
-	virtual int f(A1& a) {
+	int f(A1& a) {
 		cout << "\n F in A2. Type = " << typeid(a).name() << "\n";
 		return 2;
 	}
