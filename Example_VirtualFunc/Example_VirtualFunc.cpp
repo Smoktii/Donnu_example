@@ -1,5 +1,5 @@
 ﻿// ConsoleApplication1.cpp : Этот файл содержит функцию "main". Здесь начинается и заканчивается выполнение программы.
-// 2019-10-05 
+// 2019-10-11 
 
 #include "pch.h"
 #include <iostream>
@@ -10,6 +10,7 @@ class A1
 {
 public:
 	virtual int f(A1& a) {
+		int f;
 		cout << "\n F in A1. Type = "<< typeid(a).name()<<"\n";
 		return 1;
 	}
@@ -18,7 +19,7 @@ public:
 class A2 : public A1
 {
 public:
-	int f(A1& a) {
+	 int f(A1& a) {
 		cout << "\n F in A2. Type = " << typeid(a).name() << "\n";
 		return 2;
 	}
